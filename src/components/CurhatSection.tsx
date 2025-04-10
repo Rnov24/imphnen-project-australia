@@ -113,7 +113,7 @@ const CurhatSection: React.FC = () => {
             onClick={handleCodeClick}
             className="font-mono bg-gray-800 text-white px-8 py-4 rounded-lg cursor-pointer transition-all duration-500 hover:shadow-xl"
           >
-            <code>if(err){console.log('MAMPUS');}</code>
+            <code>if(err){'{'} console.log(&apos;MAMPUS&apos;); {'}'}</code>
           </div>
           <div id="confetti-container" className="absolute pointer-events-none"></div>
         </div>
