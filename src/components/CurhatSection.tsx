@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { BrainCircuit, KnotSquare, Calendar } from 'lucide-react';
+import { BrainCircuit, Knot, Calendar } from 'lucide-react';
 
 const CurhatCard: React.FC<{
   icon: React.ReactNode;
@@ -95,7 +94,7 @@ const CurhatSection: React.FC = () => {
           />
           
           <CurhatCard 
-            icon={<KnotSquare className="w-12 h-12" />}
+            icon={<Knot className="w-12 h-12" />}
             text="Error mulu? Debugging bikin darah tinggi? Wajar, bro/sis."
             delay="0.2s"
           />
