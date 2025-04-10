@@ -5,20 +5,13 @@ import FloatingCodeElements from './FloatingCode';
 import { ArrowDown } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
-  const fullNameRef = useRef<HTMLHeadingElement>(null);
-  const acronymRef = useRef<HTMLHeadingElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Simple animation for the name appearing letter by letter
-    if (fullNameRef.current && acronymRef.current) {
-      const fullName = fullNameRef.current;
-      const acronym = acronymRef.current;
-
-      fullName.style.opacity = '1';
-      setTimeout(() => {
-        acronym.style.opacity = '1';
-        acronym.classList.add('animate-bounce-lazy');
-      }, 2000);
+    // Animation for the logo appearing
+    if (logoRef.current) {
+      const logo = logoRef.current;
+      logo.style.opacity = '1';
     }
   }, []);
 
@@ -35,19 +28,16 @@ const HeroSection: React.FC = () => {
       <FloatingCodeElements />
       
       <div className="relative z-10 text-center max-w-4xl mx-auto">
-        <h2 
-          ref={fullNameRef} 
-          className="text-lg md:text-xl mb-4 opacity-0 transition-opacity duration-1000 font-display text-gray-700"
+        <div 
+          ref={logoRef} 
+          className="flex justify-center mb-10 opacity-0 transition-opacity duration-1000"
         >
-          Ingin Menjadi Programmer Handal Namun Enggan Ngoding
-        </h2>
-        
-        <h1 
-          ref={acronymRef} 
-          className="text-5xl md:text-7xl font-bold mb-6 opacity-0 transition-opacity duration-1000 text-gradient"
-        >
-          IMPHNEN
-        </h1>
+          <img 
+            src="https://raw.githubusercontent.com/mathwithcode/mathwithcode/master/docs/public/img/sponsors/imphnen.png" 
+            alt="IMPHNEN Logo" 
+            className="h-40 md:h-60 lg:h-80 object-contain animate-float"
+          />
+        </div>
         
         <h3 className="text-2xl md:text-4xl font-bold mb-6 text-gray-800 animate-fade-in-up">
           Pengen Jago Ngoding Tapi Mager? Sama!
@@ -56,16 +46,6 @@ const HeroSection: React.FC = () => {
         <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-gray-700 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
           Woy! Selamat dateng di IMPHNEN. Komunitas buat lo yang cita-citanya setinggi Monas, tapi semangat geraknya sebatas guling.
         </p>
-        
-        <div className="relative">
-          <div className="inline-block animate-float cursor-pointer mb-10">
-            <img 
-              src="https://cdn3d.iconscout.com/3d/premium/thumb/lazy-sloth-5577199-4663948.png" 
-              alt="Sloth programmer" 
-              className="w-32 h-32 md:w-40 md:h-40 object-contain hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-        </div>
         
         <button 
           onClick={scrollToNext}
