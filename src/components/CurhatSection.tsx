@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { BrainCircuit, Circuit, Calendar } from 'lucide-react';
+import { BrainCircuit, Code, Calendar } from 'lucide-react';
 
 const CurhatCard: React.FC<{
   icon: React.ReactNode;
@@ -95,7 +94,7 @@ const CurhatSection: React.FC = () => {
           />
           
           <CurhatCard 
-            icon={<Circuit className="w-12 h-12" />}
+            icon={<Code className="w-12 h-12" />}
             text="Error mulu? Debugging bikin darah tinggi? Wajar, bro/sis."
             delay="0.2s"
           />
