@@ -83,11 +83,11 @@ const CurhatSection: React.FC = () => {
   return (
     <section id="curhat-section" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 relative overflow-hidden">
       <div className="section-container relative z-10">
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-12">
           <img 
             src="https://raw.githubusercontent.com/mathwithcode/mathwithcode/master/docs/public/img/sponsors/imphnen.png" 
             alt="IMPHNEN Logo" 
-            className="h-16 md:h-20 animate-float"
+            className="h-32 md:h-48 lg:h-64 animate-float object-contain"
           />
         </div>
         
