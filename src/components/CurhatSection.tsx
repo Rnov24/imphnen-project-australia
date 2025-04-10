@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrainCircuit, Code, Calendar } from 'lucide-react';
 
@@ -82,6 +83,14 @@ const CurhatSection: React.FC = () => {
   return (
     <section id="curhat-section" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 relative overflow-hidden">
       <div className="section-container relative z-10">
+        <div className="flex justify-center mb-8">
+          <img 
+            src="https://raw.githubusercontent.com/mathwithcode/mathwithcode/master/docs/public/img/sponsors/imphnen.png" 
+            alt="IMPHNEN Logo" 
+            className="h-16 md:h-20 animate-float"
+          />
+        </div>
+        
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-800">
           Lihat Titik Koma Auto Puyeng? Tos Dulu!
         </h2>
