@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { BrainCircuit, Users, FileCode } from 'lucide-react';
+import { BrainCircuit, Users, FileCode, Code, BrainCog, Sparkles } from 'lucide-react';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -38,17 +38,17 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
   return (
     <div 
       ref={cardRef}
-      className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center transform transition-all duration-500 opacity-0 translate-y-8 card-hover"
+      className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-xl shadow-md dark:shadow-lg dark:shadow-blue-900/20 p-8 flex flex-col items-center transform transition-all duration-500 opacity-0 translate-y-8 card-hover"
       style={{ animationDelay: delay }}
       data-feature-card
     >
-      <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110">
-        <div className="text-skyblue-dark text-4xl">
+      <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-125 hover:rotate-6">
+        <div className="text-skyblue-dark dark:text-skyblue-light text-4xl animate-pulse-ring">
           {icon}
         </div>
       </div>
-      <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
-      <p className="text-lg text-gray-700 text-center">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">{title}</h3>
+      <p className="text-lg text-gray-700 dark:text-gray-300 text-center">{description}</p>
     </div>
   );
 };
@@ -64,17 +64,34 @@ const CurhatSection: React.FC = () => {
       });
     }, 300);
     
+    // Let's create some floating code elements as background decoration
+    const floatingElementsContainer = document.getElementById('floating-elements');
+    if (floatingElementsContainer) {
+      const codeElements = ['<div>', '</div>', '<span>', '</span>', 'const', 'let', 'function()', 'return', 'async', '{ }', '[ ]', 'import'];
+      
+      codeElements.forEach((element) => {
+        const codeEl = document.createElement('div');
+        codeEl.className = 'absolute text-blue-200 dark:text-blue-300 opacity-20 text-xl font-mono animate-float';
+        codeEl.textContent = element;
+        codeEl.style.top = `${Math.random() * 100}%`;
+        codeEl.style.left = `${Math.random() * 100}%`;
+        codeEl.style.animationDelay = `${Math.random() * 5}s`;
+        
+        floatingElementsContainer.appendChild(codeEl);
+      });
+    }
+    
     return () => clearTimeout(timer);
   }, []);
   
   return (
-    <section id="features" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 relative overflow-hidden">
+    <section id="features" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 dark:from-gray-900 dark:to-blue-950 relative overflow-hidden">
       <div className="section-container relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 animate-fade-in-up">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 dark:text-white animate-fade-in-up">
           Fitur Unggulan
         </h2>
         
-        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           IMPHNEN hadir dengan berbagai fitur untuk membantu kamu menjadi programmer handal tanpa harus pusing dengan coding.
         </p>
         
@@ -103,15 +120,30 @@ const CurhatSection: React.FC = () => {
       </div>
 
       {/* Add some floating code elements as background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/5 text-blue-200 opacity-20 text-xl font-mono animate-float">
+      <div id="floating-elements" className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/5 text-blue-200 dark:text-blue-300 opacity-20 text-xl font-mono animate-float">
           &lt;div&gt;
         </div>
-        <div className="absolute bottom-1/3 right-1/4 text-blue-200 opacity-20 text-xl font-mono animate-float" style={{ animationDelay: '1s' }}>
+        <div className="absolute bottom-1/3 right-1/4 text-blue-200 dark:text-blue-300 opacity-20 text-xl font-mono animate-float" style={{ animationDelay: '1s' }}>
           &lt;/&gt;
         </div>
-        <div className="absolute top-1/2 right-1/5 text-blue-200 opacity-20 text-xl font-mono animate-float" style={{ animationDelay: '2s' }}>
+        <div className="absolute top-1/2 right-1/5 text-blue-200 dark:text-blue-300 opacity-20 text-xl font-mono animate-float" style={{ animationDelay: '2s' }}>
           const code = true;
+        </div>
+        
+        {/* Add some SVG particles that float in the background */}
+        <div className="absolute h-full w-full">
+          <svg className="absolute top-1/4 left-1/3 text-blue-200 dark:text-blue-300 opacity-10 w-12 h-12 animate-spin-slow" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" strokeWidth="1" />
+            <path d="M12 2L12 6" stroke="currentColor" strokeWidth="1" />
+            <path d="M12 18L12 22" stroke="currentColor" strokeWidth="1" />
+            <path d="M2 12L6 12" stroke="currentColor" strokeWidth="1" />
+            <path d="M18 12L22 12" stroke="currentColor" strokeWidth="1" />
+          </svg>
+          
+          <svg className="absolute bottom-1/4 right-1/3 text-blue-200 dark:text-blue-300 opacity-10 w-10 h-10 animate-blob" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" fill="none" strokeWidth="1" />
+          </svg>
         </div>
       </div>
     </section>

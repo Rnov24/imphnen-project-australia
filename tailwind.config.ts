@@ -139,6 +139,10 @@ export default {
 					'0%': { transform: 'scale(0.95)', opacity: '1' },
 					'100%': { transform: 'scale(1.3)', opacity: '0' }
 				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -154,6 +158,7 @@ export default {
 				'blob': 'blob 7s infinite',
 				'spin-slow': 'spin-slow 10s linear infinite',
 				'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite',
+				'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
 			}
 		}
 	},
