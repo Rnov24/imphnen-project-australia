@@ -2,13 +2,15 @@
 import React, { useEffect, useRef } from 'react';
 import CloudBackground from './CloudBackground';
 import FloatingCodeElements from './FloatingCode';
-import { ArrowDown, ChevronDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
+import { useTheme } from '@/hooks/useTheme';
 
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const targetValue = 168.5;
+  const { theme } = useTheme();
 
   useEffect(() => {
     // Animation for the hero appearing
@@ -66,10 +68,14 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const tags = ['PHP', 'JS'];
+  const tags = ['PHP', 'JS', 'Python', 'Go', 'Java'];
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden bg-gradient-to-b from-blue-50 to-sky-100">
+    <section 
+      ref={heroRef} 
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden 
+                bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-900 dark:to-blue-950"
+    >
       <CloudBackground />
       <FloatingCodeElements />
       
@@ -79,31 +85,34 @@ const HeroSection: React.FC = () => {
           className="flex justify-center mb-8 opacity-0 transition-opacity duration-1000"
         >
           <img 
-            src="/logo.svg" 
+            src="/imphnen.png" 
             alt="IMPHNEN Logo" 
-            className="h-32 md:h-48 lg:h-64 object-contain animate-float"
+            className="h-40 md:h-56 lg:h-72 object-contain hover:animate-bounce-lazy transform transition-all duration-500 filter drop-shadow-lg"
+            onMouseEnter={(e) => e.currentTarget.classList.add('scale-110')}
+            onMouseLeave={(e) => e.currentTarget.classList.remove('scale-110')}
           />
         </div>
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-gray-800 animate-fade-in-up">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gradient animate-fade-in-up">
           IMPHNEN
         </h1>
         
-        <div className="space-y-2 mb-8">
-          <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+        <div className="space-y-2 mb-10">
+          <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             Ingin Menjadi Programmer Handal?
           </p>
-          <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+          <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
             Namun Enggan Ngoding
           </p>
         </div>
         
         {/* Programming Language Tags */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tags.map((tag, index) => (
             <span 
               key={tag}
-              className="px-3 py-1 rounded-full bg-white/70 text-gray-700 text-sm font-medium shadow-sm animate-fade-in-up"
+              className="px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 text-sm font-medium shadow-md 
+                        backdrop-blur-sm transform transition-all duration-300 animate-fade-in-up hover:scale-110 hover:shadow-lg"
               style={{animationDelay: `${0.2 + (index * 0.1)}s`}}
             >
               {tag}
@@ -111,43 +120,24 @@ const HeroSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="md:flex gap-6 justify-center mb-12">
-          <div className="mb-4 md:mb-0 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-            <h3 className="text-lg font-medium text-gray-600 mb-2">Bantu kami mengembangkan landing page</h3>
-          </div>
-          
-          <div className="flex justify-center space-x-4 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-            <button 
-              onClick={scrollToNext}
-              className="btn-primary group"
-            >
-              Jelajahi Fitur
-              <ChevronDown className="ml-1 inline group-hover:animate-bounce" size={18} />
-            </button>
-            
-            <a 
-              href="https://discord.gg/W4XyRAmPSD" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-primary bg-indigo-500 hover:bg-indigo-600"
-            >
-              Gabung Discord
-            </a>
-          </div>
-        </div>
-        
         {/* Member counter */}
-        <div className="mt-8 animate-fade-in-up" style={{animationDelay: '0.7s'}}>
+        <div className="mt-10 animate-fade-in-up glass-card p-6 max-w-xs mx-auto" style={{animationDelay: '0.7s'}}>
           <div className="flex flex-col items-center">
-            <span className="text-sm text-gray-600">Total Member</span>
-            <span ref={counterRef} className="text-3xl md:text-4xl font-bold text-skyblue-dark">0k</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">Total Member</span>
+            <span ref={counterRef} className="text-4xl md:text-5xl font-bold text-skyblue-dark dark:text-skyblue-light transform transition-all duration-500 hover:scale-110">0k</span>
           </div>
         </div>
         
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-          <div className="flex flex-col items-center cursor-pointer" onClick={scrollToNext}>
-            <span className="text-sm text-gray-600 mb-2">Scroll untuk melihat lebih banyak</span>
-            <ArrowDown className="animate-bounce text-gray-600" size={20} />
+        <div 
+          className="absolute bottom-10 left-0 right-0 flex justify-center animate-fade-in-up cursor-pointer"
+          style={{animationDelay: '0.8s'}}
+          onClick={scrollToNext}
+        >
+          <div className="flex flex-col items-center transform transition-all duration-300 hover:translate-y-2">
+            <span className="text-sm text-gray-600 dark:text-gray-400 mb-2">Scroll untuk melihat lebih banyak</span>
+            <div className="p-2 rounded-full bg-skyblue/30 dark:bg-skyblue-dark/30 backdrop-blur-sm">
+              <ArrowDown className="animate-bounce text-gray-600 dark:text-gray-400" size={20} />
+            </div>
           </div>
         </div>
       </div>
