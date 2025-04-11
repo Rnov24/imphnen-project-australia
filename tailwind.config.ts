@@ -121,7 +121,24 @@ export default {
 					'0%': { transform: 'scaleY(1)' },
 					'50%': { transform: 'scaleY(0.9) translateY(10px)' },
 					'100%': { transform: 'scaleY(1)' }
-				}
+				},
+				'gradient-x': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
+				},
+				'blob': {
+					'0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+					'50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
+					'100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' }
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'pulse-ring': {
+					'0%': { transform: 'scale(0.95)', opacity: '1' },
+					'100%': { transform: 'scale(1.3)', opacity: '0' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -132,7 +149,11 @@ export default {
 				'type': 'type 3.5s steps(40, end)',
 				'bounce-lazy': 'bounce-lazy 3s ease-in-out infinite',
 				'fade-in-up': 'fade-in-up 0.5s ease-out',
-				'melting': 'melting 8s ease-in-out infinite'
+				'melting': 'melting 8s ease-in-out infinite',
+				'gradient-x': 'gradient-x 3s ease infinite',
+				'blob': 'blob 7s infinite',
+				'spin-slow': 'spin-slow 10s linear infinite',
+				'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite',
 			}
 		}
 	},
