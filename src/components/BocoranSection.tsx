@@ -1,70 +1,85 @@
 
 import React from 'react';
-import { MessageCircle, BarChart, MousePointer, Coffee, Mic } from 'lucide-react';
+import { Facebook, Instagram, MessageCircle } from 'lucide-react';
 
-interface StepCardProps {
-  number: number;
+interface CommunityCardProps {
   icon: React.ReactNode;
-  text: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  link: string;
+  color: string;
   delay: string;
 }
 
-const StepCard: React.FC<StepCardProps> = ({ number, icon, text, delay }) => {
+const CommunityCard: React.FC<CommunityCardProps> = ({ 
+  icon, title, description, buttonText, link, color, delay 
+}) => {
   return (
     <div 
-      className="flex items-center bg-white rounded-xl shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
+      className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
       style={{ animationDelay: delay }}
     >
-      <div className="bg-skyblue-light text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4">
-        {number}
+      <div className={`text-white rounded-full w-16 h-16 flex items-center justify-center mb-4 ${color}`}>
+        {icon}
       </div>
-      <div className="text-skyblue-dark text-2xl mr-4">{icon}</div>
-      <p className="text-gray-700">{text}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
+      <p className="text-gray-700 text-center mb-6">{description}</p>
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className={`py-2 px-6 rounded-full text-white font-medium transition-all duration-300 hover:shadow-lg ${color}`}
+      >
+        {buttonText}
+      </a>
     </div>
   );
 };
 
 const BocoranSection: React.FC = () => {
   return (
-    <section id="bocoran-section" className="py-20 bg-gradient-to-b from-sky-50 to-blue-50 relative">
+    <section id="community" className="py-20 bg-gradient-to-b from-sky-50 to-blue-50 relative">
       <div className="section-container">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
-          Rahasia Dapur IMPHNEN <span className="text-gray-600 text-xl">(Tenang, Gak Pake Pelet)</span>
+          Komunitas Kami
         </h2>
         
-        <div className="max-w-3xl mx-auto space-y-6 mt-12">
-          <StepCard 
-            number={1}
-            icon={<MessageCircle />}
-            text="Ngerumpiin Konsep 'Ajaib' Biar Nyambung."
+        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700">
+          Bergabunglah dengan ribuan programmer Indonesia yang saling membantu dan berbagi pengetahuan.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <CommunityCard 
+            icon={<Facebook size={32} />}
+            title="Facebook Group"
+            description="Bergabunglah dengan grup Facebook kami untuk tanya jawab, sharing ide, dan artikel menarik."
+            buttonText="Gabung Sekarang"
+            link="https://www.facebook.com/groups/programmerhandal"
+            color="bg-blue-600 hover:bg-blue-700"
             delay="0s"
           />
           
-          <StepCard 
-            number={2}
-            icon={<BarChart />}
-            text="Ngulik Studi Kasus Real, Tapi Versi Woles."
-            delay="0.1s"
-          />
-          
-          <StepCard 
-            number={3}
-            icon={<MousePointer />}
-            text="Mainan Tools No-Code/Low-Code Biar Kebayang."
+          <CommunityCard 
+            icon={<Instagram size={32} />}
+            title="Instagram"
+            description="Ikuti kami di Instagram untuk tips programming, quotes inspiratif, dan info event terbaru."
+            buttonText="Follow Kami"
+            link="https://www.instagram.com/imphnen.dev/"
+            color="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
             delay="0.2s"
           />
           
-          <StepCard 
-            number={4}
-            icon={<Coffee />}
-            text="Sesi Curhat IT: Tanya Apa Aja Bebas!"
-            delay="0.3s"
+          <CommunityCard 
+            icon={<MessageCircle size={32} />}
+            title="Discord Server"
+            description="Diskusi realtime dengan sesama programmer dan dapatkan bantuan langsung dari para ahli."
+            buttonText="Join Server"
+            link="https://discord.gg/W4XyRAmPSD"
+            color="bg-indigo-600 hover:bg-indigo-700"
+            delay="0.4s"
           />
         </div>
-        
-        <p className="text-center text-gray-500 italic mt-10">
-          *Hasil mungkin beda-beda ya, tergantung tingkat kemageran akut masing-masing.
-        </p>
       </div>
     </section>
   );

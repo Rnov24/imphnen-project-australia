@@ -66,7 +66,7 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const tags = ['PHP', 'JS', 'Python', 'HTML', 'CSS'];
+  const tags = ['PHP', 'JS'];
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden bg-gradient-to-b from-blue-50 to-sky-100">

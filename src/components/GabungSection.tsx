@@ -1,6 +1,28 @@
 
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Headphones } from 'lucide-react';
+import { Facebook, Instagram, MessageSquare } from 'lucide-react';
+
+interface TestimonialProps {
+  quote: string;
+  name: string;
+  role: string;
+  delay: string;
+}
+
+const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, delay }) => {
+  return (
+    <div 
+      className="bg-white rounded-lg shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
+      style={{ animationDelay: delay }}
+    >
+      <p className="text-gray-700 italic mb-4">"{quote}"</p>
+      <div className="flex flex-col">
+        <span className="font-bold text-gray-800">{name}</span>
+        <span className="text-sm text-gray-600">{role}</span>
+      </div>
+    </div>
+  );
+};
 
 interface SocialButtonProps {
   icon: React.ReactNode;
@@ -26,7 +48,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, text, link, color, ho
 
 const GabungSection: React.FC = () => {
   const [counter, setCounter] = useState(0);
-  const targetCounter = 13456;
+  const targetCounter = 168500;
 
   useEffect(() => {
     // Animate counter
@@ -43,42 +65,69 @@ const GabungSection: React.FC = () => {
   }, [counter]);
 
   return (
-    <section id="gabung-section" className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 relative">
+    <section className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 relative">
       <div className="section-container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-800">
-          Yuk, Jadi Programmer Kece (Tanpa Beranjak dari Kasur)!
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+          Testimoni Member
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700">
+          Apa kata mereka yang telah bergabung dengan komunitas IMPHNEN?
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20">
+          <Testimonial 
+            quote="Saya yang tadinya tidak mengerti apa-apa tentang programming, sekarang bisa memahami konsep dasar dengan mudah. Terima kasih IMPHNEN!"
+            name="Budi Santoso"
+            role="Web Developer Pemula"
+            delay="0s"
+          />
+          
+          <Testimonial 
+            quote="Komunitas yang sangat supportif! Setiap pertanyaan selalu dijawab dengan cepat dan jelas. Metode penjelasannya mudah dipahami."
+            name="Anisa Rahma"
+            role="Mahasiswa Informatika"
+            delay="0.2s"
+          />
+          
+          <Testimonial 
+            quote="Server Discord IMPHNEN adalah tempat belajar terbaik untuk programmer pemula seperti saya. Materinya lengkap dan komunitas sangat membantu."
+            name="Dodi Permana"
+            role="Front-end Developer"
+            delay="0.4s"
+          />
+        </div>
+        
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+          Siap Menjadi Programmer Handal?
+        </h2>
+        
+        <p className="text-xl text-center mb-10 max-w-4xl mx-auto text-gray-700">
+          Bergabunglah dengan komunitas IMPHNEN sekarang dan mulai perjalanan programming-mu dengan cara yang menyenangkan!
+        </p>
+        
+        <div className="flex flex-col md:flex-row gap-6 justify-center max-w-3xl mx-auto mb-12">
           <SocialButton 
-            icon={<Facebook />}
-            text="Join Grup FB (Markas Gibah Kode)"
-            link="#"
-            color="bg-blue-600"
+            icon={<MessageSquare />}
+            text="Gabung Discord"
+            link="https://discord.gg/W4XyRAmPSD"
+            color="bg-indigo-600"
             hoverEffect="hover:-translate-y-1 hover:shadow-lg"
           />
           
           <SocialButton 
-            icon={<Instagram />}
-            text="Kepoin IG Kita (Isinya Meme & Tips Santuy)"
-            link="#"
-            color="bg-gradient-to-r from-purple-600 to-pink-500"
-            hoverEffect="hover:bg-gradient-to-r hover:from-purple-700 hover:to-pink-600 hover:-translate-y-1 hover:shadow-lg"
-          />
-          
-          <SocialButton 
-            icon={<Headphones />}
-            text="Nongki di Discord (Ramein Biar Gak Ngoding Sendiri Mulu)"
-            link="#"
-            color="bg-indigo-600"
+            icon={<Facebook />}
+            text="Join Facebook Group"
+            link="https://www.facebook.com/groups/programmerhandal"
+            color="bg-blue-600"
             hoverEffect="hover:-translate-y-1 hover:shadow-lg"
           />
         </div>
         
         <div className="text-center animate-fade-in-up">
           <div className="inline-block bg-white rounded-full px-8 py-4 shadow-lg">
-            <span className="text-2xl font-bold text-skyblue-dark">{counter.toLocaleString('id-ID')}+</span>
-            <span className="ml-2 text-gray-700">Jiwa Mager Tapi Cerdas Udah Ngumpul!</span>
+            <span className="text-2xl font-bold text-skyblue-dark">{(counter/1000).toFixed(1)}k+</span>
+            <span className="ml-2 text-gray-700">Member Bergabung</span>
           </div>
         </div>
       </div>

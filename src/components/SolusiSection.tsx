@@ -1,16 +1,16 @@
 
 import React from 'react';
-import { Brain, Puzzle, Users, Gamepad } from 'lucide-react';
+import { VideoIcon, FileText, Code, Users } from 'lucide-react';
 
-interface FeatureCardProps {
+interface ResourceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  tooltip: string;
+  buttonText: string;
   delay: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, tooltip, delay }) => {
+const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, buttonText, delay }) => {
   return (
     <div 
       className="card-feature group relative flex flex-col items-center text-center animate-fade-in-up"
@@ -20,53 +20,59 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, too
         {icon}
       </div>
       
-      <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
+      <p className="text-gray-600 mb-6">{description}</p>
       
-      <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-skyblue-dark text-white p-3 rounded-lg -top-12 text-sm max-w-xs">
-        {tooltip}
-        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-skyblue-dark rotate-45"></div>
-      </div>
+      <button className="text-skyblue-dark font-medium hover:underline transition-all">
+        {buttonText}
+      </button>
     </div>
   );
 };
 
 const SolusiSection: React.FC = () => {
   return (
-    <section id="solusi-section" className="py-20 bg-gradient-to-b from-blue-100 to-sky-50 relative">
+    <section id="resources" className="py-20 bg-gradient-to-b from-blue-100 to-sky-50 relative">
       <div className="section-container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800">
-          IMPHNEN: Belajar Ngoding Nggak Pake Ngoding? Seriusan?!
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+          Sumber Belajar
         </h2>
         
         <p className="text-xl text-center mb-16 max-w-4xl mx-auto text-gray-700">
-          Santai, di IMPHNEN kita percaya jadi jagoan IT itu intinya di LOGIKA & KONSEP. 
-          Ngetiknya ntar dulu, lah. Kita oprek caranya biar asik, tanpa pusing mikirin titik koma.
+          Akses berbagai materi belajar yang akan membantu kamu menguasai konsep programming dengan cara yang menyenangkan.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          <FeatureCard
-            icon={<Brain />}
-            title="Pahamin Intinya, Gak Perlu Nangis Liat Kode"
-            description="Fokus ke logika pemrograman dengan cara yang santai dan gak bikin pusing."
-            tooltip="Fokus mikir solusinya, bukan pusing sama titik koma."
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+          <ResourceCard
+            icon={<VideoIcon />}
+            title="Video Tutorial"
+            description="Belajar melalui tutorial video langkah demi langkah yang mudah diikuti."
+            buttonText="Lihat Semua Video"
             delay="0s"
           />
           
-          <FeatureCard
-            icon={<Users />}
-            title="Komunitas Anti Baper, Anti Sok Jago"
-            description="Gabung bareng orang-orang yang sama-sama santuy tapi pengen jago ngoding."
-            tooltip="Nggak ada suhu, semua levelnya sama: level mager pengen pinter."
+          <ResourceCard
+            icon={<FileText />}
+            title="Artikel & Tutorial"
+            description="Pelajari konsep programming melalui artikel yang disusun secara terstruktur."
+            buttonText="Baca Artikel"
             delay="0.2s"
           />
           
-          <FeatureCard
-            icon={<Gamepad />}
-            title="Belajar Sambil Main? Bisa Banget!"
-            description="Metode belajar yang seru dan gak monoton, dengan pendekatan yang gak ngebosenin."
-            tooltip="Diskusi, bedah kasus, main logika bareng. Biar gak ngantuk!"
+          <ResourceCard
+            icon={<Code />}
+            title="Tantangan Koding"
+            description="Uji kemampuanmu dengan tantangan koding yang menyenangkan dan menantang."
+            buttonText="Mulai Tantangan"
             delay="0.4s"
+          />
+          
+          <ResourceCard
+            icon={<Users />}
+            title="Sharing Session"
+            description="Ikuti sesi sharing bersama programmer berpengalaman dan belajar dari pengalaman mereka."
+            buttonText="Jadwal Session"
+            delay="0.6s"
           />
         </div>
       </div>
