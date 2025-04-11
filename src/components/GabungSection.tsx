@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, MessageSquare } from 'lucide-react';
+import FloatingCodeBackground from './FloatingCodeBackground';
 
 interface TestimonialProps {
   quote: string;
@@ -12,13 +13,13 @@ interface TestimonialProps {
 const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, delay }) => {
   return (
     <div 
-      className="bg-white rounded-lg shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
+      className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-lg shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
       style={{ animationDelay: delay }}
     >
-      <p className="text-gray-700 italic mb-4">"{quote}"</p>
+      <p className="text-gray-700 dark:text-gray-300 italic mb-4">"{quote}"</p>
       <div className="flex flex-col">
-        <span className="font-bold text-gray-800">{name}</span>
-        <span className="text-sm text-gray-600">{role}</span>
+        <span className="font-bold text-gray-800 dark:text-white">{name}</span>
+        <span className="text-sm text-gray-600 dark:text-gray-400">{role}</span>
       </div>
     </div>
   );
@@ -65,13 +66,15 @@ const GabungSection: React.FC = () => {
   }, [counter]);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 relative">
-      <div className="section-container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+    <section className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-800 dark:to-blue-900 relative">
+      <FloatingCodeBackground density="high" />
+      
+      <div className="section-container relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Testimoni Member
         </h2>
         
-        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700">
+        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300">
           Apa kata mereka yang telah bergabung dengan komunitas IMPHNEN?
         </p>
         
@@ -98,11 +101,11 @@ const GabungSection: React.FC = () => {
           />
         </div>
         
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Siap Menjadi Programmer Handal?
         </h2>
         
-        <p className="text-xl text-center mb-10 max-w-4xl mx-auto text-gray-700">
+        <p className="text-xl text-center mb-10 max-w-4xl mx-auto text-gray-700 dark:text-gray-300">
           Bergabunglah dengan komunitas IMPHNEN sekarang dan mulai perjalanan programming-mu dengan cara yang menyenangkan!
         </p>
         
@@ -125,9 +128,9 @@ const GabungSection: React.FC = () => {
         </div>
         
         <div className="text-center animate-fade-in-up">
-          <div className="inline-block bg-white rounded-full px-8 py-4 shadow-lg">
-            <span className="text-2xl font-bold text-skyblue-dark">{(counter/1000).toFixed(1)}k+</span>
-            <span className="ml-2 text-gray-700">Member Bergabung</span>
+          <div className="inline-block bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-full px-8 py-4 shadow-lg">
+            <span className="text-2xl font-bold text-skyblue-dark dark:text-skyblue-light">{(counter/1000).toFixed(1)}k+</span>
+            <span className="ml-2 text-gray-700 dark:text-gray-300">Member Bergabung</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Facebook, Instagram, MessageCircle } from 'lucide-react';
+import FloatingCodeBackground from './FloatingCodeBackground';
 
 interface CommunityCardProps {
   icon: React.ReactNode;
@@ -17,14 +18,14 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
 }) => {
   return (
     <div 
-      className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
+      className="flex flex-col items-center bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-xl shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
       style={{ animationDelay: delay }}
     >
       <div className={`text-white rounded-full w-16 h-16 flex items-center justify-center mb-4 ${color}`}>
         {icon}
       </div>
-      <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
-      <p className="text-gray-700 text-center mb-6">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">{title}</h3>
+      <p className="text-gray-700 dark:text-gray-300 text-center mb-6">{description}</p>
       <a 
         href={link} 
         target="_blank" 
@@ -39,13 +40,15 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
 
 const BocoranSection: React.FC = () => {
   return (
-    <section id="community" className="py-20 bg-gradient-to-b from-sky-50 to-blue-50 relative">
-      <div className="section-container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+    <section id="community" className="py-20 bg-gradient-to-b from-sky-50 to-blue-50 dark:from-gray-900 dark:to-blue-950 relative">
+      <FloatingCodeBackground density="medium" />
+      
+      <div className="section-container relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Komunitas Kami
         </h2>
         
-        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700">
+        <p className="text-xl text-center mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300">
           Bergabunglah dengan ribuan programmer Indonesia yang saling membantu dan berbagi pengetahuan.
         </p>
         

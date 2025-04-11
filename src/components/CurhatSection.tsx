@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { BrainCircuit, Users, FileCode } from 'lucide-react';
+import FloatingCodeBackground from './FloatingCodeBackground';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -82,28 +83,13 @@ const CurhatSection: React.FC = () => {
       });
     }, 300);
     
-    // Create floating code elements as background decoration
-    const floatingElementsContainer = document.getElementById('floating-elements');
-    if (floatingElementsContainer) {
-      const codeElements = ['<div>', '</div>', '<span>', '</span>', 'const', 'let', 'function()', 'return', 'async', '{ }', '[ ]', 'import'];
-      
-      codeElements.forEach((element) => {
-        const codeEl = document.createElement('div');
-        codeEl.className = 'absolute text-blue-200 dark:text-blue-400 opacity-20 text-xl font-mono animate-float';
-        codeEl.textContent = element;
-        codeEl.style.top = `${Math.random() * 100}%`;
-        codeEl.style.left = `${Math.random() * 100}%`;
-        codeEl.style.animationDelay = `${Math.random() * 5}s`;
-        
-        floatingElementsContainer.appendChild(codeEl);
-      });
-    }
-    
     return () => clearTimeout(timer);
   }, []);
   
   return (
     <section id="features" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 dark:from-gray-900 dark:to-blue-950 relative overflow-hidden">
+      <FloatingCodeBackground density="medium" />
+      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 dark:text-white animate-fade-in-up text-gradient">
           Fitur Unggulan
@@ -137,36 +123,33 @@ const CurhatSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Add some floating code elements as background decoration */}
-      <div id="floating-elements" className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Dynamic elements are added via JavaScript in useEffect */}
-      </div>
-      
-      <style jsx>{`
-        [data-feature-card].is-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        
-        @keyframes pulse-ring {
-          0% {
-            transform: scale(0.8);
-            opacity: 0.8;
+      <style>
+        {`
+          [data-feature-card].is-visible {
+            opacity: 1;
+            transform: translateY(0);
           }
-          70% {
-            transform: scale(1.2);
-            opacity: 0;
+          
+          @keyframes pulse-ring {
+            0% {
+              transform: scale(0.8);
+              opacity: 0.8;
+            }
+            70% {
+              transform: scale(1.2);
+              opacity: 0;
+            }
+            100% {
+              transform: scale(1.3);
+              opacity: 0;
+            }
           }
-          100% {
-            transform: scale(1.3);
-            opacity: 0;
+          
+          .animate-pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
           }
-        }
-        
-        .animate-pulse-ring {
-          animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-        }
-      `}</style>
+        `}
+      </style>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { VideoIcon, FileText, Code, Users } from 'lucide-react';
+import FloatingCodeBackground from './FloatingCodeBackground';
 
 interface ResourceCardProps {
   icon: React.ReactNode;
@@ -13,17 +14,17 @@ interface ResourceCardProps {
 const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, buttonText, delay }) => {
   return (
     <div 
-      className="card-feature group relative flex flex-col items-center text-center animate-fade-in-up"
+      className="card-feature group relative flex flex-col items-center text-center animate-fade-in-up bg-white/90 dark:bg-gray-800/90 dark:border dark:border-gray-700/50 rounded-xl shadow-md p-6 hover:shadow-xl transition-all duration-300"
       style={{ animationDelay: delay }}
     >
-      <div className="text-skyblue text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+      <div className="text-skyblue dark:text-skyblue-light text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
       
-      <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
-      <p className="text-gray-600 mb-6">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">{description}</p>
       
-      <button className="text-skyblue-dark font-medium hover:underline transition-all">
+      <button className="text-skyblue-dark dark:text-skyblue-light font-medium hover:underline transition-all">
         {buttonText}
       </button>
     </div>
@@ -32,13 +33,15 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, b
 
 const SolusiSection: React.FC = () => {
   return (
-    <section id="resources" className="py-20 bg-gradient-to-b from-blue-100 to-sky-50 relative">
-      <div className="section-container">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800">
+    <section id="resources" className="py-20 bg-gradient-to-b from-blue-100 to-sky-50 dark:from-gray-800 dark:to-blue-900 relative">
+      <FloatingCodeBackground density="low" />
+      
+      <div className="section-container relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Sumber Belajar
         </h2>
         
-        <p className="text-xl text-center mb-16 max-w-4xl mx-auto text-gray-700">
+        <p className="text-xl text-center mb-16 max-w-4xl mx-auto text-gray-700 dark:text-gray-300">
           Akses berbagai materi belajar yang akan membantu kamu menguasai konsep programming dengan cara yang menyenangkan.
         </p>
         

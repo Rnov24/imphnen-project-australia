@@ -93,16 +93,15 @@ const HeroSection: React.FC = () => {
           />
         </div>
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gradient animate-fade-in-up">
-          IMPHNEN
-        </h1>
-        
         <div className="space-y-2 mb-10">
           <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            Ingin Menjadi Programmer Handal?
+            Programmer ngoding?
           </p>
           <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            Namun Enggan Ngoding
+            mending scroll fesnuk.
+          </p>
+          <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-gray-300 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+            Siapkan penggorengan, Atmint.
           </p>
         </div>
         
