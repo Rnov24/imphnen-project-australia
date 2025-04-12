@@ -46,7 +46,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, text, link, color, ho
   );
 };
 
-const GabungSection: React.FC = () => {
+const JoinSection: React.FC = () => {
   return (
     <section className="py-20 bg-transparent relative">
       <div className="section-container relative z-10">
@@ -111,4 +111,4 @@ const GabungSection: React.FC = () => {
   );
 };
 
-export default GabungSection;
+export default JoinSection;

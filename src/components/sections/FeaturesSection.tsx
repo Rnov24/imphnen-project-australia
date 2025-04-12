@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BrainCircuit, Users, FileCode } from 'lucide-react';
-import { CustomCard, CustomCardHeader, CustomCardContent } from './ui/custom-card';
+import { CustomCard, CustomCardHeader, CustomCardContent } from '../ui/custom-card';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -43,7 +43,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
   );
 };
 
-const CurhatSection: React.FC = () => {
+const FeaturesSection: React.FC = () => {
   return (
     <section id="features" className="py-20 relative overflow-hidden bg-transparent">
       <div className="section-container relative z-10">
@@ -82,4 +82,4 @@ const CurhatSection: React.FC = () => {
   );
 };
 
-export default CurhatSection;
+export default FeaturesSection;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { VideoIcon, FileText, Code, Users } from 'lucide-react';
-import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
+import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from '../ui/custom-card';
 
 interface ResourceCardProps {
   icon: React.ReactNode;
@@ -45,7 +45,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, b
   );
 };
 
-const SolusiSection: React.FC = () => {
+const ResourcesSection: React.FC = () => {
   return (
     <section id="resources" className="py-20 bg-transparent relative">
       <div className="section-container relative z-10">
@@ -95,4 +95,4 @@ const SolusiSection: React.FC = () => {
   );
 };
 
-export default SolusiSection;
+export default ResourcesSection;

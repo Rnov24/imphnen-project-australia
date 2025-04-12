@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Facebook, Instagram, MessageCircle } from 'lucide-react';
-import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
+import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from '../ui/custom-card';
 
 interface CommunityCardProps {
   icon: React.ReactNode;
@@ -56,7 +56,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   );
 };
 
-const BocoranSection: React.FC = () => {
+const CommunitySection: React.FC = () => {
   return (
     <section id="community" className="py-20 bg-transparent relative">
       <div className="section-container relative z-10">
@@ -104,4 +104,4 @@ const BocoranSection: React.FC = () => {
   );
 };
 
-export default BocoranSection;
+export default CommunitySection;
