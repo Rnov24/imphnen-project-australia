@@ -1,14 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
-import CloudBackground from './CloudBackground';
-import FloatingCodeElements from './FloatingCode';
 import { ArrowDown } from 'lucide-react';
-import { useTheme } from '@/hooks/useTheme';
 
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     // Animation for the hero appearing
@@ -51,12 +47,8 @@ const HeroSection: React.FC = () => {
   return (
     <section 
       ref={heroRef} 
-      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden 
-                bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-900 dark:to-blue-950"
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden"
     >
-      <CloudBackground />
-      <FloatingCodeElements />
-      
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         <div 
           ref={logoRef} 

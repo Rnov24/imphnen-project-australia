@@ -1,10 +1,7 @@
 
 import React from 'react';
 import { VideoIcon, FileText, Code, Users } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
 import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
-import CloudBackground from './CloudBackground';
-import { useTheme } from '@/hooks/useTheme';
 
 interface ResourceCardProps {
   icon: React.ReactNode;
@@ -49,12 +46,8 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, b
 };
 
 const SolusiSection: React.FC = () => {
-  const { theme } = useTheme();
-  
   return (
-    <section id="resources" className="py-20 bg-white dark:bg-gray-900 relative">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="low" />}
-      
+    <section id="resources" className="py-20 bg-transparent relative">
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Sumber Belajar

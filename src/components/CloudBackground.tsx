@@ -23,12 +23,12 @@ const CloudBackground: React.FC = () => {
         cloud.className = 'cloud';
         
         // Random properties
-        const size = Math.random() * 100 + 50;
+        const size = Math.random() * 150 + 80; // Larger clouds
         const posX = Math.random() * containerWidth;
         const posY = Math.random() * containerHeight;
-        const opacity = Math.random() * 0.6 + 0.3;
-        const duration = Math.random() * 60 + 30;
-        const delay = Math.random() * 10;
+        const opacity = Math.random() * 0.5 + 0.2; // Slightly more transparent
+        const duration = Math.random() * 120 + 60; // Slower movement
+        const delay = Math.random() * 20;
         
         // Apply styles based on theme
         cloud.style.width = `${size}px`;
@@ -40,17 +40,21 @@ const CloudBackground: React.FC = () => {
         
         // Apply theme-specific styles
         if (theme === 'dark') {
-          cloud.style.background = 'rgba(30, 41, 59, 0.5)';
+          cloud.style.background = 'rgba(30, 41, 59, 0.3)';
+          cloud.style.borderRadius = '50%';
+          cloud.style.filter = 'blur(30px)';
         } else {
-          cloud.style.background = 'rgba(255, 255, 255, 0.8)';
+          cloud.style.background = 'rgba(255, 255, 255, 0.6)';
+          cloud.style.borderRadius = '50%';
+          cloud.style.filter = 'blur(30px)';
         }
         
         container.appendChild(cloud);
       }
     };
     
-    // Initial creation
-    createClouds(20);
+    // Initial creation - more clouds for a fuller effect
+    createClouds(50);
     
     // Resize handler
     const handleResize = () => {

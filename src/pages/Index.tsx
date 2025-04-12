@@ -7,8 +7,13 @@ import SolusiSection from '@/components/SolusiSection';
 import BocoranSection from '@/components/BocoranSection';
 import GabungSection from '@/components/GabungSection';
 import FooterSection from '@/components/FooterSection';
+import CloudBackground from '@/components/CloudBackground';
+import FloatingCodeBackground from '@/components/FloatingCodeBackground';
+import { useTheme } from '@/hooks/useTheme';
 
 const Index = () => {
+  const { theme } = useTheme();
+  
   useEffect(() => {
     // Fade in elements as they enter the viewport
     const observer = new IntersectionObserver(
@@ -53,9 +58,18 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+    <div className="flex flex-col min-h-screen overflow-x-hidden relative">
+      {/* Unified background for the entire page based on theme */}
+      <div className="fixed inset-0 z-0">
+        {theme === 'light' ? (
+          <CloudBackground />
+        ) : (
+          <FloatingCodeBackground density="medium" />
+        )}
+      </div>
+      
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         <HeroSection />
         <section id="features">
           <CurhatSection />

@@ -1,10 +1,7 @@
 
 import React from 'react';
 import { BrainCircuit, Users, FileCode } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
 import { CustomCard, CustomCardHeader, CustomCardContent } from './ui/custom-card';
-import CloudBackground from './CloudBackground';
-import { useTheme } from '@/hooks/useTheme';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -47,12 +44,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
 };
 
 const CurhatSection: React.FC = () => {
-  const { theme } = useTheme();
-  
   return (
-    <section id="features" className="py-20 relative overflow-hidden bg-white dark:bg-gray-900">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
-      
+    <section id="features" className="py-20 relative overflow-hidden bg-transparent">
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 dark:text-white animate-fade-in-up text-gradient">
           Fitur Unggulan
