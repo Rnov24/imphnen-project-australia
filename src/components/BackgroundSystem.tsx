@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 
-type BackgroundType = 'cloud' | 'code';
+type BackgroundType = 'cloud' | 'code' | 'auto';
 type Density = 'low' | 'medium' | 'high';
 
 interface BackgroundSystemProps {
