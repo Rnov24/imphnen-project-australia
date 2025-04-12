@@ -8,8 +8,6 @@ import { useTheme } from '@/hooks/useTheme';
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
-  const targetValue = 168.5;
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -17,26 +15,6 @@ const HeroSection: React.FC = () => {
     if (logoRef.current) {
       const logo = logoRef.current;
       logo.style.opacity = '1';
-    }
-
-    // Counter animation
-    if (counterRef.current) {
-      let currentValue = 0;
-      const duration = 2000; // 2 seconds
-      const stepTime = 20; // Update every 20ms
-      const steps = duration / stepTime;
-      const increment = targetValue / steps;
-
-      const counter = setInterval(() => {
-        currentValue += increment;
-        if (currentValue >= targetValue) {
-          currentValue = targetValue;
-          clearInterval(counter);
-        }
-        if (counterRef.current) {
-          counterRef.current.textContent = currentValue.toFixed(1) + 'k';
-        }
-      }, stepTime);
     }
 
     // Intersection Observer for fade-in animation
@@ -117,14 +95,6 @@ const HeroSection: React.FC = () => {
               {tag}
             </span>
           ))}
-        </div>
-        
-        {/* Member counter */}
-        <div className="mt-10 animate-fade-in-up glass-card p-6 max-w-xs mx-auto" style={{animationDelay: '0.7s'}}>
-          <div className="flex flex-col items-center">
-            <span className="text-sm text-gray-600 dark:text-gray-400">Total Member</span>
-            <span ref={counterRef} className="text-4xl md:text-5xl font-bold text-skyblue-dark dark:text-skyblue-light transform transition-all duration-500 hover:scale-110">0k</span>
-          </div>
         </div>
         
         <div 

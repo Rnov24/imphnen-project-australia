@@ -1,8 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '@/hooks/useTheme';
 
 const CloudBackground: React.FC = () => {
   const cloudsRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (!cloudsRef.current) return;
@@ -28,7 +30,7 @@ const CloudBackground: React.FC = () => {
         const duration = Math.random() * 60 + 30;
         const delay = Math.random() * 10;
         
-        // Apply styles
+        // Apply styles based on theme
         cloud.style.width = `${size}px`;
         cloud.style.height = `${size}px`;
         cloud.style.left = `${posX}px`;
@@ -36,12 +38,19 @@ const CloudBackground: React.FC = () => {
         cloud.style.opacity = opacity.toString();
         cloud.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
         
+        // Apply theme-specific styles
+        if (theme === 'dark') {
+          cloud.style.background = 'rgba(30, 41, 59, 0.5)';
+        } else {
+          cloud.style.background = 'rgba(255, 255, 255, 0.8)';
+        }
+        
         container.appendChild(cloud);
       }
     };
     
     // Initial creation
-    createClouds(15);
+    createClouds(20);
     
     // Resize handler
     const handleResize = () => {
@@ -64,9 +73,14 @@ const CloudBackground: React.FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [theme]);
 
-  return <div ref={cloudsRef} className="clouds"></div>;
+  return (
+    <div 
+      ref={cloudsRef} 
+      className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+    ></div>
+  );
 };
 
 export default CloudBackground;

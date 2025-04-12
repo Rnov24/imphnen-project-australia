@@ -65,7 +65,7 @@ const FloatingCodeBackground: React.FC<FloatingCodeBackgroundProps> = ({
           key={element.id} 
           className={`absolute font-mono text-sm md:text-base text-blue-200/30 dark:text-blue-300/20 transform ${
             animated ? 'animate-float' : ''
-          }`}
+          } hover:text-blue-400/40 dark:hover:text-blue-300/40 transition-colors duration-300`}
           style={{
             top: element.top,
             left: element.left,

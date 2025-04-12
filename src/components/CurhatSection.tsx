@@ -1,7 +1,10 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { BrainCircuit, Users, FileCode } from 'lucide-react';
 import FloatingCodeBackground from './FloatingCodeBackground';
+import { CustomCard, CustomCardHeader, CustomCardContent } from './ui/custom-card';
+import CloudBackground from './CloudBackground';
+import { useTheme } from '@/hooks/useTheme';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -11,84 +14,44 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, delay }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-    
-    return () => {
-      if (cardRef.current) {
-        observer.disconnect();
-      }
-    };
-  }, []);
-  
   return (
-    <div 
-      ref={cardRef}
-      className="bg-white/90 dark:bg-gray-800/90 dark:border dark:border-gray-700/50 rounded-xl shadow-md dark:shadow-lg 
-                dark:shadow-blue-900/10 p-8 flex flex-col items-center transform transition-all duration-500 
-                opacity-0 translate-y-8 hover:shadow-xl dark:hover:shadow-blue-900/30"
-      style={{ animationDelay: delay }}
-      data-feature-card
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <CustomCard 
+      variant="glass" 
+      hoverEffect="scale" 
+      animation="fade-in" 
+      animationDelay={delay}
+      className="group dark:border dark:border-gray-700/50"
     >
-      <div 
-        className={`flex justify-center mb-4 transform transition-all duration-500 ${
-          isHovered ? 'scale-125 rotate-6' : ''
-        }`}
-      >
-        <div className="relative p-4 rounded-full bg-skyblue/20 dark:bg-skyblue-dark/20">
+      <div className="flex justify-center mt-6 mb-4">
+        <div className="relative p-4 rounded-full bg-skyblue/20 dark:bg-skyblue-dark/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
           <div className="text-skyblue-dark dark:text-skyblue-light text-4xl">
             {icon}
           </div>
-          {isHovered && (
-            <span className="absolute inset-0 rounded-full animate-pulse-ring border-2 border-skyblue dark:border-skyblue-light"></span>
-          )}
+          <span className="absolute inset-0 rounded-full animate-pulse-ring border-2 border-skyblue dark:border-skyblue-light opacity-0 group-hover:opacity-100"></span>
         </div>
       </div>
-      <h3 className={`text-xl font-bold mb-3 text-gray-800 dark:text-white transition-all duration-300 ${
-        isHovered ? 'text-skyblue-dark dark:text-skyblue-light' : ''
-      }`}>
-        {title}
-      </h3>
-      <p className="text-lg text-gray-700 dark:text-gray-300 text-center">{description}</p>
-    </div>
+      
+      <CustomCardHeader>
+        <h3 className="text-xl font-bold text-gray-800 dark:text-white transition-all duration-300 group-hover:text-skyblue-dark dark:group-hover:text-skyblue-light">
+          {title}
+        </h3>
+      </CustomCardHeader>
+      
+      <CustomCardContent>
+        <p className="text-lg text-gray-700 dark:text-gray-300">
+          {description}
+        </p>
+      </CustomCardContent>
+    </CustomCard>
   );
 };
 
 const CurhatSection: React.FC = () => {
-  useEffect(() => {
-    // Add animation class after a short delay to trigger animations
-    const timer = setTimeout(() => {
-      document.querySelectorAll('[data-feature-card]').forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('is-visible');
-        }, index * 200);
-      });
-    }, 300);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  const { theme } = useTheme();
   
   return (
-    <section id="features" className="py-20 bg-gradient-to-b from-sky-100 to-blue-100 dark:from-gray-900 dark:to-blue-950 relative overflow-hidden">
-      <FloatingCodeBackground density="medium" />
+    <section id="features" className="py-20 relative overflow-hidden bg-white dark:bg-gray-900">
+      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
       
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 dark:text-white animate-fade-in-up text-gradient">
@@ -122,34 +85,6 @@ const CurhatSection: React.FC = () => {
           />
         </div>
       </div>
-
-      <style>
-        {`
-          [data-feature-card].is-visible {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          
-          @keyframes pulse-ring {
-            0% {
-              transform: scale(0.8);
-              opacity: 0.8;
-            }
-            70% {
-              transform: scale(1.2);
-              opacity: 0;
-            }
-            100% {
-              transform: scale(1.3);
-              opacity: 0;
-            }
-          }
-          
-          .animate-pulse-ring {
-            animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-          }
-        `}
-      </style>
     </section>
   );
 };

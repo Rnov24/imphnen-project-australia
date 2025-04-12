@@ -2,15 +2,18 @@
 import React from 'react';
 import { Facebook, Instagram, MessageSquare } from 'lucide-react';
 import FloatingCodeBackground from './FloatingCodeBackground';
+import CloudBackground from './CloudBackground';
+import { useTheme } from '@/hooks/useTheme';
 
 const FooterSection: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
   
   const programmingLanguages = ['PHP', 'JavaScript', 'Python', 'HTML', 'CSS', 'Node.js'];
 
   return (
-    <footer className="py-12 bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-950 relative">
-      <FloatingCodeBackground density="low" />
+    <footer className="py-12 bg-white dark:bg-gray-900 relative">
+      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="low" />}
       
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
@@ -58,7 +61,10 @@ const FooterSection: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Bahasa Pemrograman</h3>
             <div className="flex flex-wrap gap-2">
               {programmingLanguages.map(lang => (
-                <span key={lang} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 text-sm">
+                <span 
+                  key={lang} 
+                  className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 text-sm transition-all duration-300 hover:bg-skyblue/20 hover:text-skyblue-dark dark:hover:bg-skyblue-dark/20 dark:hover:text-skyblue-light"
+                >
                   {lang}
                 </span>
               ))}

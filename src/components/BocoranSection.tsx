@@ -2,6 +2,9 @@
 import React from 'react';
 import { Facebook, Instagram, MessageCircle } from 'lucide-react';
 import FloatingCodeBackground from './FloatingCodeBackground';
+import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
+import CloudBackground from './CloudBackground';
+import { useTheme } from '@/hooks/useTheme';
 
 interface CommunityCardProps {
   icon: React.ReactNode;
@@ -17,31 +20,51 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   icon, title, description, buttonText, link, color, delay 
 }) => {
   return (
-    <div 
-      className="flex flex-col items-center bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-xl shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
-      style={{ animationDelay: delay }}
+    <CustomCard
+      variant="glass"
+      hoverEffect="glow"
+      animation="fade-in"
+      animationDelay={delay}
+      className="group dark:border dark:border-gray-700/50"
     >
-      <div className={`text-white rounded-full w-16 h-16 flex items-center justify-center mb-4 ${color}`}>
-        {icon}
+      <div className="flex justify-center mt-6">
+        <div className={`text-white rounded-full w-16 h-16 flex items-center justify-center mb-4 ${color} transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+          {icon}
+        </div>
       </div>
-      <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">{title}</h3>
-      <p className="text-gray-700 dark:text-gray-300 text-center mb-6">{description}</p>
-      <a 
-        href={link} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className={`py-2 px-6 rounded-full text-white font-medium transition-all duration-300 hover:shadow-lg ${color}`}
-      >
-        {buttonText}
-      </a>
-    </div>
+      
+      <CustomCardHeader>
+        <h3 className="text-xl font-bold text-gray-800 dark:text-white transition-all duration-300 group-hover:text-skyblue-dark dark:group-hover:text-skyblue-light">
+          {title}
+        </h3>
+      </CustomCardHeader>
+      
+      <CustomCardContent>
+        <p className="text-gray-700 dark:text-gray-300">
+          {description}
+        </p>
+      </CustomCardContent>
+      
+      <CustomCardFooter className="mb-4">
+        <a 
+          href={link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={`py-2 px-6 rounded-full text-white font-medium transition-all duration-300 hover:shadow-lg ${color} transform group-hover:scale-105`}
+        >
+          {buttonText}
+        </a>
+      </CustomCardFooter>
+    </CustomCard>
   );
 };
 
 const BocoranSection: React.FC = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section id="community" className="py-20 bg-gradient-to-b from-sky-50 to-blue-50 dark:from-gray-900 dark:to-blue-950 relative">
-      <FloatingCodeBackground density="medium" />
+    <section id="community" className="py-20 bg-white dark:bg-gray-900 relative">
+      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
       
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
