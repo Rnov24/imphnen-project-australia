@@ -1,7 +1,10 @@
 
 import React from 'react';
 import { Facebook, Instagram, MessageCircle } from 'lucide-react';
-import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from '../ui/custom-card';
+import FloatingCodeBackground from './FloatingCodeBackground';
+import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
+import CloudBackground from './CloudBackground';
+import { useTheme } from '@/hooks/useTheme';
 
 interface CommunityCardProps {
   icon: React.ReactNode;
@@ -56,9 +59,13 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   );
 };
 
-const CommunitySection: React.FC = () => {
+const BocoranSection: React.FC = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section id="community" className="py-20 bg-transparent relative">
+    <section id="community" className="py-20 bg-white dark:bg-gray-900 relative">
+      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
+      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Komunitas Kami
@@ -104,4 +111,4 @@ const CommunitySection: React.FC = () => {
   );
 };
 
-export default CommunitySection;
+export default BocoranSection;

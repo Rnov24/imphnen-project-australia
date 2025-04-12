@@ -1,6 +1,7 @@
 
-import React from 'react';
-import { Facebook, MessageSquare } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Facebook, Instagram, MessageSquare } from 'lucide-react';
+import FloatingCodeBackground from './FloatingCodeBackground';
 
 interface TestimonialProps {
   quote: string;
@@ -12,7 +13,7 @@ interface TestimonialProps {
 const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, delay }) => {
   return (
     <div 
-      className="bg-white/70 dark:bg-gray-800/70 dark:border dark:border-gray-700/50 rounded-lg shadow-md p-6 backdrop-blur-sm animate-fade-in-up hover:shadow-lg transition-all duration-300"
+      className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-lg shadow-md p-6 animate-fade-in-up hover:shadow-lg transition-all duration-300"
       style={{ animationDelay: delay }}
     >
       <p className="text-gray-700 dark:text-gray-300 italic mb-4">"{quote}"</p>
@@ -46,9 +47,28 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, text, link, color, ho
   );
 };
 
-const JoinSection: React.FC = () => {
+const GabungSection: React.FC = () => {
+  const [counter, setCounter] = useState(0);
+  const targetCounter = 168500;
+
+  useEffect(() => {
+    // Animate counter
+    if (counter < targetCounter) {
+      const timeout = setTimeout(() => {
+        setCounter(prev => {
+          const increment = Math.max(1, Math.floor((targetCounter - prev) / 20));
+          return Math.min(prev + increment, targetCounter);
+        });
+      }, 20);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [counter]);
+
   return (
-    <section className="py-20 bg-transparent relative">
+    <section className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-800 dark:to-blue-900 relative">
+      <FloatingCodeBackground density="high" />
+      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Testimoni Member
@@ -106,9 +126,16 @@ const JoinSection: React.FC = () => {
             hoverEffect="hover:-translate-y-1 hover:shadow-lg"
           />
         </div>
+        
+        <div className="text-center animate-fade-in-up">
+          <div className="inline-block bg-white dark:bg-gray-800 dark:border dark:border-gray-700/50 rounded-full px-8 py-4 shadow-lg">
+            <span className="text-2xl font-bold text-skyblue-dark dark:text-skyblue-light">{(counter/1000).toFixed(1)}k+</span>
+            <span className="ml-2 text-gray-700 dark:text-gray-300">Member Bergabung</span>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default JoinSection;
+export default GabungSection;
