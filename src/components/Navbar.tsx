@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Home, MessageSquare, Lightbulb, Users } from 'lucide-react';
+import { Menu, X, Moon, Sun, Home, Star, BookOpen, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/hooks/useTheme';
 import { Button } from './ui/button';
@@ -46,9 +46,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: '#home', icon: <Home size={18} />, label: 'Home' },
-    { href: '#curhat', icon: <MessageSquare size={18} />, label: 'Curhat' },
-    { href: '#solusi', icon: <Lightbulb size={18} />, label: 'Solusi' },
-    { href: '#gabung', icon: <Users size={18} />, label: 'Gabung' },
+    { href: '#features', icon: <Star size={18} />, label: 'Featured' },
+    { href: '#resources', icon: <BookOpen size={18} />, label: 'Resources' },
+    { href: '#community', icon: <Users size={18} />, label: 'Community' },
   ];
 
   return (
