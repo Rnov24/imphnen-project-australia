@@ -1,9 +1,7 @@
 
 import React from 'react';
-import { BrainCircuit, Users, FileCode } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
+import { BrainCircuit, Users, FileCode, Zap } from 'lucide-react';
 import { CustomCard, CustomCardHeader, CustomCardContent } from './ui/custom-card';
-import CloudBackground from './CloudBackground';
 import { useTheme } from '@/hooks/useTheme';
 
 interface FeatureCardProps {
@@ -11,9 +9,16 @@ interface FeatureCardProps {
   title: string;
   description: string;
   delay: string;
+  color?: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, delay }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ 
+  icon, 
+  title, 
+  description, 
+  delay,
+  color = "bg-skyblue/20 dark:bg-skyblue-dark/20" 
+}) => {
   return (
     <CustomCard 
       variant="glass" 
@@ -23,7 +28,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
       className="group dark:border dark:border-gray-700/50"
     >
       <div className="flex justify-center mt-6 mb-4">
-        <div className="relative p-4 rounded-full bg-skyblue/20 dark:bg-skyblue-dark/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+        <div className={`relative p-4 rounded-full ${color} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}>
           <div className="text-skyblue-dark dark:text-skyblue-light text-4xl">
             {icon}
           </div>
@@ -51,8 +56,6 @@ const CurhatSection: React.FC = () => {
   
   return (
     <section id="features" className="py-20 relative overflow-hidden bg-white dark:bg-gray-900">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
-      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gray-800 dark:text-white animate-fade-in-up text-gradient">
           Fitur Unggulan
@@ -62,12 +65,13 @@ const CurhatSection: React.FC = () => {
           IMPHNEN hadir dengan berbagai fitur untuk membantu kamu menjadi programmer handal tanpa harus pusing dengan coding.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center">
           <FeatureCard 
             icon={<BrainCircuit className="w-12 h-12" />}
             title="Belajar Tanpa Koding"
             description="Pelajari konsep programming dengan cara yang mudah dipahami tanpa harus menulis kode yang rumit."
             delay="0s"
+            color="bg-purple-100 dark:bg-purple-900/30"
           />
           
           <FeatureCard 
@@ -75,6 +79,7 @@ const CurhatSection: React.FC = () => {
             title="Komunitas Supportif"
             description="Bergabunglah dengan komunitas programmer Indonesia yang siap membantu dan berbagi pengalaman."
             delay="0.2s"
+            color="bg-blue-100 dark:bg-blue-900/30"
           />
           
           <FeatureCard 
@@ -82,6 +87,15 @@ const CurhatSection: React.FC = () => {
             title="Tutorial Interaktif"
             description="Akses tutorial interaktif yang membuat konsep pemrograman sulit menjadi mudah dipahami."
             delay="0.4s"
+            color="bg-green-100 dark:bg-green-900/30"
+          />
+
+          <FeatureCard 
+            icon={<Zap className="w-12 h-12" />}
+            title="AI Learning Assistant"
+            description="Asisten berbasis AI yang membantu proses belajar kamu dengan menjawab pertanyaan seputar pemrograman."
+            delay="0.6s"
+            color="bg-amber-100 dark:bg-amber-900/30"
           />
         </div>
       </div>

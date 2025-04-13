@@ -1,9 +1,7 @@
 
 import React from 'react';
-import { VideoIcon, FileText, Code, Users } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
+import { VideoIcon, FileText, Code, Users, BookOpen, ChevronRight } from 'lucide-react';
 import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
-import CloudBackground from './CloudBackground';
 import { useTheme } from '@/hooks/useTheme';
 
 interface ResourceCardProps {
@@ -12,16 +10,19 @@ interface ResourceCardProps {
   description: string;
   buttonText: string;
   delay: string;
+  className?: string;
 }
 
-const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, buttonText, delay }) => {
+const ResourceCard: React.FC<ResourceCardProps> = ({ 
+  icon, title, description, buttonText, delay, className = '' 
+}) => {
   return (
     <CustomCard
       variant="glass"
       hoverEffect="lift"
       animation="fade-in"
       animationDelay={delay}
-      className="group"
+      className={`group ${className}`}
     >
       <div className="text-skyblue dark:text-skyblue-light text-5xl flex justify-center mt-6 mb-2 group-hover:scale-110 transition-transform duration-300">
         {icon}
@@ -40,8 +41,9 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description, b
       </CustomCardContent>
       
       <CustomCardFooter className="mb-4">
-        <button className="text-skyblue-dark dark:text-skyblue-light font-medium hover:underline transition-all duration-300 group-hover:scale-105">
+        <button className="flex items-center gap-1 text-skyblue-dark dark:text-skyblue-light font-medium hover:underline transition-all duration-300 group-hover:scale-105">
           {buttonText}
+          <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </CustomCardFooter>
     </CustomCard>
@@ -53,8 +55,6 @@ const SolusiSection: React.FC = () => {
   
   return (
     <section id="resources" className="py-20 bg-white dark:bg-gray-900 relative">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="low" />}
-      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Sumber Belajar
@@ -64,7 +64,7 @@ const SolusiSection: React.FC = () => {
           Akses berbagai materi belajar yang akan membantu kamu menguasai konsep programming dengan cara yang menyenangkan.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-12">
           <ResourceCard
             icon={<VideoIcon className="w-12 h-12" />}
             title="Video Tutorial"
@@ -92,9 +92,17 @@ const SolusiSection: React.FC = () => {
           <ResourceCard
             icon={<Users className="w-12 h-12" />}
             title="Sharing Session"
-            description="Ikuti sesi sharing bersama programmer berpengalaman dan belajar dari pengalaman mereka."
+            description="Ikuti sesi sharing bersama programmer berpengalaman dan belajar dari mereka."
             buttonText="Jadwal Session"
             delay="0.6s"
+          />
+
+          <ResourceCard
+            icon={<BookOpen className="w-12 h-12" />}
+            title="E-Book Gratis"
+            description="Unduh e-book programming gratis untuk dipelajari kapan saja dan di mana saja."
+            buttonText="Download E-Book"
+            delay="0.8s"
           />
         </div>
       </div>

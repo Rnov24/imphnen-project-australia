@@ -1,9 +1,7 @@
 
 import React from 'react';
-import { Facebook, Instagram, MessageCircle } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
+import { Facebook, Instagram, MessageCircle, Github, Youtube } from 'lucide-react';
 import { CustomCard, CustomCardHeader, CustomCardContent, CustomCardFooter } from './ui/custom-card';
-import CloudBackground from './CloudBackground';
 import { useTheme } from '@/hooks/useTheme';
 
 interface CommunityCardProps {
@@ -64,8 +62,6 @@ const BocoranSection: React.FC = () => {
   
   return (
     <section id="community" className="py-20 bg-white dark:bg-gray-900 relative">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="medium" />}
-      
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Komunitas Kami
@@ -75,12 +71,12 @@ const BocoranSection: React.FC = () => {
           Bergabunglah dengan ribuan programmer Indonesia yang saling membantu dan berbagi pengetahuan.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           <CommunityCard 
             icon={<Facebook size={32} />}
-            title="Facebook Group"
-            description="Bergabunglah dengan grup Facebook kami untuk tanya jawab, sharing ide, dan artikel menarik."
-            buttonText="Gabung Sekarang"
+            title="Facebook"
+            description="Bergabunglah dengan grup Facebook kami untuk tanya jawab dan sharing pengetahuan."
+            buttonText="Gabung"
             link="https://www.facebook.com/groups/programmerhandal"
             color="bg-blue-600 hover:bg-blue-700"
             delay="0s"
@@ -89,8 +85,8 @@ const BocoranSection: React.FC = () => {
           <CommunityCard 
             icon={<Instagram size={32} />}
             title="Instagram"
-            description="Ikuti kami di Instagram untuk tips programming, quotes inspiratif, dan info event terbaru."
-            buttonText="Follow Kami"
+            description="Ikuti kami di Instagram untuk tips programming dan info event terbaru."
+            buttonText="Follow"
             link="https://www.instagram.com/imphnen.dev/"
             color="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
             delay="0.2s"
@@ -98,12 +94,32 @@ const BocoranSection: React.FC = () => {
           
           <CommunityCard 
             icon={<MessageCircle size={32} />}
-            title="Discord Server"
-            description="Diskusi realtime dengan sesama programmer dan dapatkan bantuan langsung dari para ahli."
-            buttonText="Join Server"
+            title="Discord"
+            description="Diskusi realtime dengan sesama programmer dan bantuan langsung."
+            buttonText="Join"
             link="https://discord.gg/W4XyRAmPSD"
             color="bg-indigo-600 hover:bg-indigo-700"
             delay="0.4s"
+          />
+
+          <CommunityCard 
+            icon={<Github size={32} />}
+            title="GitHub"
+            description="Kontribusi di proyek open source dan lihat kode sumber project kami."
+            buttonText="Follow"
+            link="https://github.com/imphnen"
+            color="bg-gray-800 hover:bg-gray-900"
+            delay="0.6s"
+          />
+
+          <CommunityCard 
+            icon={<Youtube size={32} />}
+            title="YouTube"
+            description="Tonton tutorial video dan live coding session dari tim kami."
+            buttonText="Subscribe"
+            link="https://youtube.com/c/imphnen"
+            color="bg-red-600 hover:bg-red-700"
+            delay="0.8s"
           />
         </div>
       </div>

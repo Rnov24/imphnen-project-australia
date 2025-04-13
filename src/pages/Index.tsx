@@ -7,6 +7,7 @@ import SolusiSection from '@/components/SolusiSection';
 import BocoranSection from '@/components/BocoranSection';
 import GabungSection from '@/components/GabungSection';
 import FooterSection from '@/components/FooterSection';
+import BackgroundSystem from '@/components/BackgroundSystem';
 
 const Index = () => {
   useEffect(() => {
@@ -57,14 +58,17 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <HeroSection />
-        <section id="features">
+        <section id="features" className="relative">
+          <BackgroundSystem type="auto" density="low" />
           <CurhatSection />
           <SolusiSection />
         </section>
-        <section id="community">
+        <section id="community" className="relative">
+          <BackgroundSystem type="auto" density="medium" />
           <BocoranSection />
         </section>
-        <section id="resources">
+        <section id="resources" className="relative">
+          <BackgroundSystem type="auto" density="low" />
           <GabungSection />
         </section>
       </main>

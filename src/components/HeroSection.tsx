@@ -1,14 +1,14 @@
 
-import React, { useEffect, useRef } from 'react';
-import CloudBackground from './CloudBackground';
-import FloatingCodeElements from './FloatingCode';
-import { ArrowDown } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowDown, Code, Sparkles } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
+import BackgroundSystem from './BackgroundSystem';
 
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     // Animation for the hero appearing
@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const tags = ['PHP', 'JS', 'Python', 'Go', 'Java'];
+  const tags = ['PHP', 'JS', 'Python', 'Go', 'Java', 'React', 'TypeScript'];
 
   return (
     <section 
@@ -54,21 +54,27 @@ const HeroSection: React.FC = () => {
       className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden 
                 bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-900 dark:to-blue-950"
     >
-      <CloudBackground />
-      <FloatingCodeElements />
+      <BackgroundSystem type="auto" density="medium" />
       
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         <div 
           ref={logoRef} 
           className="flex justify-center mb-8 opacity-0 transition-opacity duration-1000"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
         >
-          <img 
-            src="/imphnen.png" 
-            alt="IMPHNEN Logo" 
-            className="h-40 md:h-56 lg:h-72 object-contain hover:animate-bounce-lazy transform transition-all duration-500 filter drop-shadow-lg"
-            onMouseEnter={(e) => e.currentTarget.classList.add('scale-110')}
-            onMouseLeave={(e) => e.currentTarget.classList.remove('scale-110')}
-          />
+          <div className="relative">
+            <img 
+              src="/imphnen.png" 
+              alt="IMPHNEN Logo" 
+              className={`h-40 md:h-56 lg:h-72 object-contain transition-all duration-500 filter drop-shadow-lg ${isHovering ? 'scale-110' : ''}`}
+            />
+            {isHovering && (
+              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
+                <Sparkles className="text-yellow-400 h-12 w-12 animate-spin-slow" />
+              </div>
+            )}
+          </div>
         </div>
         
         <div className="space-y-2 mb-10">
@@ -95,6 +101,16 @@ const HeroSection: React.FC = () => {
               {tag}
             </span>
           ))}
+        </div>
+        
+        <div className="flex justify-center mt-4 mb-16 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+          <button 
+            className="btn-primary flex items-center gap-2 group"
+            onClick={() => window.open("https://github.com/trending", "_blank")}
+          >
+            <Code className="group-hover:rotate-12 transition-transform" />
+            Lihat Trending di GitHub
+          </button>
         </div>
         
         <div 
