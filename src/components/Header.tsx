@@ -55,20 +55,26 @@ const Header: React.FC = () => {
     if (isMenuOpen) {
       // Store current scroll position
       scrollPositionRef.current = window.scrollY;
-      // Add styles to lock scrolling
+      // Add styles to lock scrolling without changing position
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPositionRef.current}px`;
-      document.body.style.width = '100%';
+      document.body.style.height = '100vh';
+      document.body.style.touchAction = 'none';
     } else {
       // Remove styles that lock scrolling
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      // Restore scroll position
-      window.scrollTo(0, scrollPositionRef.current);
+      document.body.style.height = '';
+      document.body.style.touchAction = '';
+      
+      // Don't scroll back since we're keeping the visual position intact
+      // This prevents the jumping behavior
     }
+    
+    return () => {
+      // Clean up styles to prevent any lingering effects
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.body.style.touchAction = '';
+    };
   }, [isMenuOpen]);
 
   const toggleTheme = () => {
@@ -338,11 +344,12 @@ const Header: React.FC = () => {
               backdropFilter: 'blur(0px)',
               transition: { duration: 0.3 }
             }}
-            className="fixed inset-0 bg-white/95 dark:bg-gray-900/95 pt-20 px-6 md:hidden z-40 overflow-auto max-h-screen"
+            style={{ top: headerRef.current ? headerRef.current.offsetHeight : 0 }}
+            className="fixed inset-x-0 bottom-0 bg-white/95 dark:bg-gray-900/95 px-6 md:hidden z-40 overflow-auto"
           >
-            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-skyblue via-purple-500 to-pink-500" />
+            <div className="sticky top-0 left-0 right-0 h-1 w-full bg-gradient-to-r from-skyblue via-purple-500 to-pink-500" />
             
-            <div className="absolute top-4 right-4 z-50">
+            <div className="sticky top-4 right-4 z-50 flex justify-end">
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={closeMenu}
