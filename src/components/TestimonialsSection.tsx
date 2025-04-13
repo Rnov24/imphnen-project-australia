@@ -48,7 +48,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, text, link, color, ho
 
 const TestimonialsSection: React.FC = () => {
   const [counter, setCounter] = useState(0);
-  const targetCounter = 168500;
+  const targetCounter = 170000;
 
   useEffect(() => {
     // Animate counter
