@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Facebook, Instagram, MessageSquare } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
-import CloudBackground from './CloudBackground';
+import BackgroundSystem from './BackgroundSystem';
 import { useTheme } from '@/hooks/useTheme';
 
 const FooterSection: React.FC = () => {
@@ -13,7 +11,7 @@ const FooterSection: React.FC = () => {
 
   return (
     <footer className="py-12 bg-white dark:bg-gray-900 relative">
-      {theme === 'light' ? <CloudBackground /> : <FloatingCodeBackground density="low" />}
+      <BackgroundSystem type="auto" density="low" />
       
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">

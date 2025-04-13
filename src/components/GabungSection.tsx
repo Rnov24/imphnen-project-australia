@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, MessageSquare } from 'lucide-react';
-import FloatingCodeBackground from './FloatingCodeBackground';
+import BackgroundSystem from './BackgroundSystem';
 
 interface TestimonialProps {
   quote: string;
@@ -67,7 +66,7 @@ const GabungSection: React.FC = () => {
 
   return (
     <section className="py-20 bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-800 dark:to-blue-900 relative">
-      <FloatingCodeBackground density="high" />
+      <BackgroundSystem type="auto" density="high" />
       
       <div className="section-container relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-800 dark:text-white">
