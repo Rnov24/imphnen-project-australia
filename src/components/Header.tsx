@@ -20,6 +20,7 @@ const Header: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, setTheme } = useTheme();
   const headerRef = useRef<HTMLElement>(null);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,8 +50,33 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock/unlock body scroll when mobile menu is opened/closed
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Store current scroll position
+      scrollPositionRef.current = window.scrollY;
+      // Add styles to lock scrolling
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
+    } else {
+      // Remove styles that lock scrolling
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      // Restore scroll position
+      window.scrollTo(0, scrollPositionRef.current);
+    }
+  }, [isMenuOpen]);
+
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -312,12 +338,23 @@ const Header: React.FC = () => {
               backdropFilter: 'blur(0px)',
               transition: { duration: 0.3 }
             }}
-            className="fixed inset-0 bg-white/90 dark:bg-gray-900/90 pt-20 px-6 md:hidden z-40"
+            className="fixed inset-0 bg-white/95 dark:bg-gray-900/95 pt-20 px-6 md:hidden z-40 overflow-auto max-h-screen"
           >
             <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-skyblue via-purple-500 to-pink-500" />
             
-            <div className="mb-8 flex items-center justify-center">
-              <div className="relative">
+            <div className="absolute top-4 right-4 z-50">
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={closeMenu}
+                className="p-2 rounded-full bg-gray-200/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300"
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </motion.button>
+            </div>
+            
+            <div className="mb-8 flex items-center justify-center mt-6">
+              <div className="relative w-full max-w-xs">
                 <input
                   type="text"
                   placeholder="Search..."
@@ -327,7 +364,7 @@ const Header: React.FC = () => {
               </div>
             </div>
             
-            <nav className="flex flex-col space-y-1">
+            <nav className="flex flex-col space-y-1 mt-4 mb-20">
               {[
                 { name: 'Features', href: '#features' },
                 { name: 'Community', href: '#community' },
@@ -337,7 +374,7 @@ const Header: React.FC = () => {
                   key={index}
                   href={item.href} 
                   className="text-gray-800 dark:text-gray-200 text-xl font-medium w-full rounded-lg p-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-skyblue-dark dark:hover:text-skyblue-light transition-all duration-300 flex justify-between items-center"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
@@ -349,8 +386,8 @@ const Header: React.FC = () => {
               ))}
             </nav>
             
-            <div className="absolute bottom-10 left-0 w-full px-6">
-              <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-xl">
+            <div className="fixed bottom-0 left-0 w-full px-6 pb-6 pt-4 bg-gradient-to-t from-white dark:from-gray-900 to-transparent">
+              <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg">
                 <h3 className="text-lg font-bold mb-3 bg-gradient-to-r from-skyblue to-purple-500 bg-clip-text text-transparent">Connect with us</h3>
                 <div className="flex items-center justify-between">
                   <motion.a 
