@@ -1,16 +1,21 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown, Code, Sparkles } from 'lucide-react';
+import { ArrowDown, Code, Sparkles, Facebook } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
 import BackgroundSystem from './BackgroundSystem';
+import { Button } from './ui/button';
 
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const [isHovering, setIsHovering] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    // Set loaded state after initial render
+    setIsLoaded(true);
+    
     // Animation for the hero appearing
     if (logoRef.current) {
       const logo = logoRef.current;
@@ -51,7 +56,7 @@ const HeroSection: React.FC = () => {
   return (
     <section 
       ref={heroRef} 
-      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-10 overflow-hidden 
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-32 overflow-hidden 
                 bg-gradient-to-b from-blue-50 to-sky-100 dark:from-gray-900 dark:to-blue-950"
     >
       <BackgroundSystem type="auto" density="medium" />
@@ -59,7 +64,7 @@ const HeroSection: React.FC = () => {
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         <div 
           ref={logoRef} 
-          className="flex justify-center mb-8 opacity-0 transition-opacity duration-1000"
+          className={`flex justify-center mb-8 opacity-0 transition-all duration-1000 ${isLoaded ? 'animate-float' : ''}`}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -89,13 +94,14 @@ const HeroSection: React.FC = () => {
           </p>
         </div>
         
-        {/* Programming Language Tags */}
+        {/* Programming Language Tags with hover effects */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tags.map((tag, index) => (
             <span 
               key={tag}
               className="px-4 py-2 rounded-full bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 text-sm font-medium shadow-md 
-                        backdrop-blur-sm transform transition-all duration-300 animate-fade-in-up hover:scale-110 hover:shadow-lg"
+                        backdrop-blur-sm transform transition-all duration-300 animate-fade-in-up hover:scale-110 hover:shadow-lg
+                        hover:bg-skyblue/20 hover:text-skyblue-dark dark:hover:bg-skyblue-dark/20 dark:hover:text-skyblue-light"
               style={{animationDelay: `${0.2 + (index * 0.1)}s`}}
             >
               {tag}
@@ -103,16 +109,20 @@ const HeroSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="flex justify-center mt-4 mb-16 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-          <button 
-            className="btn-primary flex items-center gap-2 group"
-            onClick={() => window.open("https://github.com/trending", "_blank")}
+        {/* Updated CTA Button */}
+        <div className="flex justify-center mt-4 mb-24 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+          <Button 
+            className="group bg-skyblue hover:bg-skyblue-dark dark:bg-skyblue-dark dark:hover:bg-skyblue text-white font-medium 
+                     py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 
+                     hover:scale-105 flex items-center gap-2"
+            onClick={() => window.open("https://www.facebook.com/groups/programmerhandal", "_blank")}
           >
-            <Code className="group-hover:rotate-12 transition-transform" />
-            Lihat Trending di GitHub
-          </button>
+            <Facebook className="group-hover:rotate-12 transition-transform" size={20} />
+            Mari scroll fesnuk
+          </Button>
         </div>
         
+        {/* Scroll indicator with animation */}
         <div 
           className="absolute bottom-10 left-0 right-0 flex justify-center animate-fade-in-up cursor-pointer"
           style={{animationDelay: '0.8s'}}
@@ -120,8 +130,8 @@ const HeroSection: React.FC = () => {
         >
           <div className="flex flex-col items-center transform transition-all duration-300 hover:translate-y-2">
             <span className="text-sm text-gray-600 dark:text-gray-400 mb-2">Scroll untuk melihat lebih banyak</span>
-            <div className="p-2 rounded-full bg-skyblue/30 dark:bg-skyblue-dark/30 backdrop-blur-sm">
-              <ArrowDown className="animate-bounce text-gray-600 dark:text-gray-400" size={20} />
+            <div className="p-2 rounded-full bg-skyblue/30 dark:bg-skyblue-dark/30 backdrop-blur-sm animate-bounce">
+              <ArrowDown className="text-gray-600 dark:text-gray-400" size={20} />
             </div>
           </div>
         </div>

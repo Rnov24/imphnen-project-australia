@@ -8,8 +8,12 @@ import BocoranSection from '@/components/BocoranSection';
 import GabungSection from '@/components/GabungSection';
 import FooterSection from '@/components/FooterSection';
 import BackgroundSystem from '@/components/BackgroundSystem';
+import FloatingParticles from '@/components/FloatingParticles';
+import { useTheme } from '@/hooks/useTheme';
 
 const Index = () => {
+  const { theme } = useTheme();
+  
   useEffect(() => {
     // Fade in elements as they enter the viewport
     const observer = new IntersectionObserver(
@@ -57,16 +61,23 @@ const Index = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       <main className="flex-grow">
-        <HeroSection />
+        <div className="relative">
+          <HeroSection />
+          <FloatingParticles count={30} speed={0.3} className="absolute top-0 left-0 z-0 opacity-50" />
+        </div>
+        
         <section id="features" className="relative">
           <BackgroundSystem type="auto" density="low" />
           <CurhatSection />
           <SolusiSection />
         </section>
+        
         <section id="community" className="relative">
           <BackgroundSystem type="auto" density="medium" />
+          <FloatingParticles count={20} speed={0.2} className="absolute top-0 left-0 z-0 opacity-30" />
           <BocoranSection />
         </section>
+        
         <section id="resources" className="relative">
           <BackgroundSystem type="auto" density="low" />
           <GabungSection />
