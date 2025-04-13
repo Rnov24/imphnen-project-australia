@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import ResourcesSection from '@/components/ResourcesSection';
@@ -58,7 +57,6 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Header />
       <main className="flex-grow">
         <div className="relative">
           <HeroSection />
