@@ -1,11 +1,10 @@
-
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import CurhatSection from '@/components/CurhatSection';
-import SolusiSection from '@/components/SolusiSection';
-import BocoranSection from '@/components/BocoranSection';
-import GabungSection from '@/components/GabungSection';
+import FeaturesSection from '@/components/FeaturesSection';
+import ResourcesSection from '@/components/ResourcesSection';
+import CommunitySection from '@/components/CommunitySection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import FooterSection from '@/components/FooterSection';
 import BackgroundSystem from '@/components/BackgroundSystem';
 import FloatingParticles from '@/components/FloatingParticles';
@@ -68,19 +67,19 @@ const Index = () => {
         
         <section id="features" className="relative">
           <BackgroundSystem type="auto" density="low" />
-          <CurhatSection />
-          <SolusiSection />
+          <FeaturesSection />
+          <ResourcesSection />
         </section>
         
         <section id="community" className="relative">
           <BackgroundSystem type="auto" density="medium" />
           <FloatingParticles count={20} speed={0.2} className="absolute top-0 left-0 z-0 opacity-30" />
-          <BocoranSection />
+          <CommunitySection />
         </section>
         
         <section id="resources" className="relative">
           <BackgroundSystem type="auto" density="low" />
-          <GabungSection />
+          <TestimonialsSection />
         </section>
       </main>
       <FooterSection />

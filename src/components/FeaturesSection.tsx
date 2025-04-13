@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrainCircuit, Users, FileCode, Zap } from 'lucide-react';
 import { CustomCard, CustomCardHeader, CustomCardContent } from './ui/custom-card';
@@ -25,10 +24,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       hoverEffect="scale" 
       animation="fade-in" 
       animationDelay={delay}
-      className="group dark:border dark:border-gray-700/50"
+      className="group dark:border dark:border-gray-700/50 h-full flex flex-col"
     >
-      <div className="flex justify-center mt-6 mb-4">
-        <div className={`relative p-4 rounded-full ${color} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}>
+      <div className="flex justify-center mt-8 mb-6">
+        <div className={`relative p-4 rounded-full ${color} transition-all duration-300 w-20 h-20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6`}>
           <div className="text-skyblue-dark dark:text-skyblue-light text-4xl">
             {icon}
           </div>
@@ -36,14 +35,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         </div>
       </div>
       
-      <CustomCardHeader>
+      <CustomCardHeader className="text-center px-6">
         <h3 className="text-xl font-bold text-gray-800 dark:text-white transition-all duration-300 group-hover:text-skyblue-dark dark:group-hover:text-skyblue-light">
           {title}
         </h3>
       </CustomCardHeader>
       
-      <CustomCardContent>
-        <p className="text-lg text-gray-700 dark:text-gray-300">
+      <CustomCardContent className="flex-grow px-6 pb-8">
+        <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
           {description}
         </p>
       </CustomCardContent>
@@ -51,7 +50,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   );
 };
 
-const CurhatSection: React.FC = () => {
+const FeaturesSection: React.FC = () => {
   const { theme } = useTheme();
   
   return (
@@ -65,7 +64,7 @@ const CurhatSection: React.FC = () => {
           IMPHNEN hadir dengan berbagai fitur untuk membantu kamu menjadi programmer handal tanpa harus pusing dengan coding.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-stretch">
           <FeatureCard 
             icon={<BrainCircuit className="w-12 h-12" />}
             title="Belajar Tanpa Koding"
@@ -103,4 +102,4 @@ const CurhatSection: React.FC = () => {
   );
 };
 
-export default CurhatSection;
+export default FeaturesSection;

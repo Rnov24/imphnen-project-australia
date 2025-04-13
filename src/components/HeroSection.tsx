@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Updated CTA Button */}
-        <div className="flex justify-center mt-4 mb-24 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+        <div className="flex justify-center mt-4 mb-32 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
           <Button 
             className="group bg-skyblue hover:bg-skyblue-dark dark:bg-skyblue-dark dark:hover:bg-skyblue text-white font-medium 
                      py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 
@@ -124,7 +124,7 @@ const HeroSection: React.FC = () => {
         
         {/* Scroll indicator with animation */}
         <div 
-          className="absolute bottom-10 left-0 right-0 flex justify-center animate-fade-in-up cursor-pointer"
+          className="absolute bottom-14 left-0 right-0 flex justify-center animate-fade-in-up cursor-pointer"
           style={{animationDelay: '0.8s'}}
           onClick={scrollToNext}
         >
